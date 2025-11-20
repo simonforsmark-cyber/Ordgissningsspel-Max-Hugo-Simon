@@ -42,3 +42,40 @@ def uppdatera_gissning(ordet, golvat_ord, bokstav):
             golvat_ord[i] = bokstav
             hittad = True
     return hittad
+
+def spela():
+    """
+    Huvudfunktion som styr spelet.
+    """
+    ordet = slumpa_ord()
+    golvat_ord = skapa_golvat_ord(ordet)
+    antal_forsok = 7
+    gissade_bokstaver = []
+
+    # Spelloop
+    while antal_forsok > 0 and "_" in golvat_ord:
+        skriv_status(golvat_ord, antal_forsok)
+        bokstav = las_in_bokstav()
+
+        if bokstav in gissade_bokstaver:
+            print("Den bokstaven har du redan gissat!")
+            continue
+
+        gissade_bokstaver.append(bokstav)
+
+        if uppdatera_gissning(ordet, golvat_ord, bokstav):
+            print("Rätt gissat!")
+        else:
+            print("Fel gissning!")
+            antal_forsok -= 1
+
+    # Spelresultat
+    if "_" not in golvat_ord:
+        print(f"\nGrattis! Du gissade rätt ord: {ordet}")
+    else:
+        print(f"\nTyvärr, du förlorade! Ordet var: {ordet}")
+
+
+# Starta spelet
+if __name__ == "__main__":
+    spela()
