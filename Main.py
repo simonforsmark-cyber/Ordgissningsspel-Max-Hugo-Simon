@@ -20,3 +20,14 @@ def skriv_status(ord, antal_forsok):
     
     print("\nAktuellt ord: ", " ".join(ord))
     print(f"Antal gissningar kvar: {antal_forsok}") 
+
+def las_in_bokstav():
+    
+    #Läser in en bokstav från användaren.
+    #Säker input: fortsätter tills användaren matar en enda bokstav.
+    
+    while True:
+        bokstav = input("Gissa en bokstav: ").lower().strip()
+        if len(bokstav) == 1 and bokstav.isalpha():
+            return bokstav
+        print("Felaktig inmatning! Du måste skriva EN bokstav.")
